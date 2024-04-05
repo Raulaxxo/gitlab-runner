@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  github-runner:
+    image: ghcr.io/actions/actions-runner:2.315.0
+    container_name: github-runner
+    command: ./run.sh
+    restart: unless-stopped
+    environment:
+  #    - RUNNER_NAME=${name}
+  #    - REPO_URL=${url}
+  #    - RUNNER_TOKEN=${token}
+  #    - RUNNER_WORKDIR=${dir}
+      - TZ=Your/Timezone
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./${dir}:/${dir}
+      - ./runner:/home/runner
